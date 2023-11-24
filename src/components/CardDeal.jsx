@@ -15,7 +15,7 @@ const CardDeal = () =>(
              transition={{duration:1, type:spring,}}
 
             className={styles.heading2}>
-                Find a better card deal <br className=" hidden sm:block"/> in few easy steps
+                Find a better card deal. <br className=" hidden sm:block"/> in few easy steps
             </motion.h2>
             <motion.p
              initial={{opacity:0, y:-200}}
