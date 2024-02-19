@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import { navLinks } from '../constants'
 import { motion, spring, stagger } from 'framer-motion'
+import { HiMenuAlt3 } from "react-icons/hi";
+import { HiX } from "react-icons/hi";
 
-import {logo, menu, close} from '../assets'
+import {logo} from '../assets'
 
 export default function Navbar() {
   const [toggle, setToggle] = useState(false)
+  const toggleIcon =() =>{
+    setToggle((prev) => !prev)
+  }
   return (
-    <nav className='w-full flex py-6 justify-between items-center navbar'>
+    <nav className='w-full flex flex-wrap py-6 justify-between items-center navbar'>
       <motion.img
       initial={{x:-100}}
       animate={{x:0}}
@@ -44,37 +49,33 @@ export default function Navbar() {
         ))}
 
       </motion.ul>
-      <div className=' sm:hidden flex flex-1 justify-end items-center'>
-        <img
-        src={ toggle? close : menu}
-          alt='nernu'
-          className=' object-contain w-7'
-          onClick={() => setToggle((prev) => !prev)}
-        />
+      <div className=' sm:hidden'>
+        <button onClick={toggleIcon}>
+            {toggle? <HiX className=' w-8 h-8'/>: <HiMenuAlt3 className=' w-8 h-8'/>}
+        </button>
+      </div>
+      {toggle && (
+        
+            <ul className=' list-none mt-5 flex flex-col justify-center items-center basis-full'>
+              {navLinks.map((nav, index) =>(
+                <li
+                  key={nav.id}
+                  className={`font-poppins font-normal cursor-pointer text-[16px]
+                  ${index ===navLinks.length -1 ? 'mb-0' : 'mb-4'} text-white`}
+                >
+                  <a href={`#${nav.id}`}>
+                    {nav.title}
+                  </a>
 
-        <div
-        className={`${toggle? 'flex' : 'hidden'}
-         p-4 bg-black-gradient absolute top-20 right-0 my-2 justify-center min-w-[140px] rounded-xl sidebar`}
-        >
-              <ul className=' list-none flex flex-col justify-end items-start '>
-            {navLinks.map((nav, index) =>(
-              <li
-                key={nav.id}
-                className={`font-poppins font-normal cursor-pointer text-[16px]
-                 ${index ===navLinks.length -1 ? 'mb-0' : 'mb-4'} text-white`}
-              >
-                <a href={`#${nav.id}`}>
-                  {nav.title}
-                </a>
-
-              </li>
-            ))}
+                </li>
+              ))}
 
           </ul>
 
-        </div>
+       
 
-      </div>
+      )}
+
     </nav>
   )
 }
