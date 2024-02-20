@@ -1,17 +1,17 @@
 import styles, {layout} from "../style"
 import { google,apple,bill } from "../assets"
-import {easeIn, motion, spring, stagger} from 'framer-motion'
+import { motion, spring} from 'framer-motion'
 const Billing = () =>(
-    <section className={layout.sectionReverse}>
+    <section className={` ${layout.sectionReverse}`}>
         <motion.div
         initial={{x:-200, opacity:0}}
         whileInView={{x:1, opacity:1}}
         transition={{duration:1,type:spring, delay:0.2}}
         className={layout.sectionImgReverse }> 
-            <img src={bill} alt="billing" className=" w-[100%] h-[100%] relative z-[5]"/>
+            <img src={bill} alt="billing" className=" w-[100%] h-[100%]  relative z-[5]"/>
 
         </motion.div>
-        <div className={layout.sectionInfo}>
+        <div className={`${layout.sectionInfo}`}>
             <motion.h2
             initial={{x:200, opacity:0}}
             whileInView={{x:1, opacity:1}}
